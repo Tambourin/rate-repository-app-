@@ -23,7 +23,8 @@ const Main = () => {
         </Route>
         <Route path="/signin">
           <SignIn />
-        </Route>        
+        </Route>
+      
       </Switch>
       <Link to="/signin" component={AppBarTab} text="signin">
         <Text>signin</Text>

@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppBarTab = ({ text, path }) => {
+const AppBarTab = ({ text, path, fun }) => {
   return (
-    <Link to={path} component={TouchableWithoutFeedback}>
+    <Link to={path} component={TouchableWithoutFeedback} onPress={fun}>
       <Text style={styles.links}>{ text }</Text>
     </Link>
   );

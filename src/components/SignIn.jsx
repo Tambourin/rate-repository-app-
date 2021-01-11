@@ -4,6 +4,8 @@ import { View } from 'react-native';
 import FormikTextInput from './FormikTextInput.jsx';
 import Button from './Button.jsx';
 import * as yup from 'yup';
+import useSignIn from '../hooks/useSignIn.js';
+import { useHistory } from 'react-router-native';
 
 const initialValues = {
   username: '',
@@ -30,9 +32,14 @@ const SigninForm = ({ onSubmit }) => {
 };
 
 const SignIn = () => {
-  const onSubmit = values => {
-    console.log(values);
+  const [ signIn ] = useSignIn();
+  const history = useHistory();
+
+  const onSubmit = async values => {
+    signIn(values);
+    history.push('/');
   };
+  
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
