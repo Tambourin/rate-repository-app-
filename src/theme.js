@@ -8,7 +8,8 @@ const theme = {
     error: 'red',
     shade: '#24292e',
     lightShade: 'grey',
-    white: '#fdfdfd'
+    lighterShade: 'whitesmoke',
+    white: '#fdfdfd',
   },
   fontSizes: {
     body: 14,

@@ -16,13 +16,17 @@ const styles = StyleSheet.create({
   },
   primary: {
     backgroundColor: theme.colors.primary
+  },
+  alert: {
+    backgroundColor: theme.colors.error
   }  
 });
 
 const Button = ({ style, ...props }) => {
   const buttonStyle = [
     styles.basic,
-    style === 'primary' && styles.primary
+    style === 'primary' && styles.primary,
+    style === 'alert' && styles.alert
   ];
 
   return <TouchableWithoutFeedback {...props} >

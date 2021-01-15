@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { Link } from 'react-router-native';
 import theme from '../theme';
 import StatItem from './StatItem';
 import Text from './Text';
@@ -35,25 +36,27 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ item }) => {
+  if (!item) { return null; }
+
   return(
     <View style={styles.container}>
-
       <View style={styles.details}>
         <Image style={styles.image} source={{uri: item.ownerAvatarUrl}} />
         <View style={styles.detailsTexts}>
-          <Text fontWeight='bold'>{item.fullName} </Text>
-          <Text color='textSecondary'>{item.description} </Text>          
-          <Text style={styles.detailsLanguage}>{item.language}</Text>
+          <Link to={`/${item.id}`} component={TouchableWithoutFeedback}> 
+            <Text fontWeight='bold' testID="fullName">{item.fullName}</Text>
+          </Link>          
+          <Text color='textSecondary' testID="description">{item.description}</Text>          
+          <Text style={styles.detailsLanguage} testID="language">{item.language}</Text>
         </View>        
       </View>
       
       <View style={styles.stats}>
-        <StatItem text="Forks" amount={item.forksCount}/>
-        <StatItem text="Stars" amount={item.stargazersCount}/>
-        <StatItem text="Reviews" amount={item.reviewCount}/>
-        <StatItem text="Rating" amount={item.ratingAverage}/>
-      </View>
-      
+        <StatItem testID="forksCount" text="Forks" amount={item.forksCount}/>
+        <StatItem testID="stargazersCount" text="Stars" amount={item.stargazersCount}/>
+        <StatItem testID="reviewCount" text="Reviews" amount={item.reviewCount}/>
+        <StatItem testID="ratingAverage" text="Rating" amount={item.ratingAverage}/>
+      </View>      
     </View>
   );
 };

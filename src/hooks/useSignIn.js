@@ -6,6 +6,7 @@ import { SIGN_IN } from "../graphql/mutations";
 const useSignIn = () => {
   const storage = useContext(AuthStorageContext);
   const [ mutate, result ] = useMutation(SIGN_IN);
+ 
   
   const client = useApolloClient();
 
@@ -17,16 +18,12 @@ const useSignIn = () => {
   };
 
   const signOut = async () => {
+    console.log("sign out");
     storage.removeAccessToken();
     client.resetStore();
   };
 
-
-
-  //const authorizedUser = data?.authorizedUser;
-  //console.log(authorizedUser);  
-
-  return [ signIn, result, signOut ];
+  return { signIn, result, signOut };
 };
 
 export default useSignIn;
